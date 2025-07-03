@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>User Settings - Quibbles test</title>
+    <link rel="stylesheet" href="settingsStyling.css" />
+</head>
+<body>
+   
+
+    <main>
+        <h1>User Settings</h1>
+        <div class="tabs-container">
+            <button class="tab-button active" data-tab="account">Account</button>
+            <button class="tab-button" data-tab="password">Password</button>
+            <button class="tab-button" data-tab="notifications">Notifications</button>
+        </div>
+
+        <section id="account" class="tab-content active">
+            <form>
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username"  placeholder="Enter username" />
+
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email"  placeholder="Enter email address" />
+
+                <label for="bio">Profile Bio</label>
+               
+
+                <textarea id="bio" name="bio" placeholder="Tell others about yourself..." rows="4"></textarea>
+                
+                <label id="avatar-upload" for="avatar">Upload Avatar</label>
+                <div class="avatar-upload">
+                    <div class="avatar-preview" id="avatar-preview">CW</div>
+                    <input type="file" id="upload-btn" name="avatar" accept="image/*" class="upload-btn" />
+                </div>
+                <button type="submit">Save Changes</button>
+            </form>
+        </section>
+
+        <section id="password" class="tab-content">
+            <form>
+                <label for="current-password">Current Password</label>
+                <input type="password" id="current-password" name="current-password" placeholder="Enter current password" />
+
+                <label for="new-password">New Password</label>
+                <input type="password" id="new-password" name="new-password" placeholder="Enter new password" />
+
+                <label for="confirm-password">Confirm New Password</label>
+                <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm new password" />
+
+                <button type="submit">Update Password</button>
+            </form>
+        </section>
+
+        <section id="notifications" class="tab-content">
+            <form>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="community-posts" name="community-posts" checked />
+                    <label for="community-posts" class="checkbox-label">email notifications</label>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="mentions" name="mentions" checked />
+                    <label for="mentions" class="checkbox-label">push notifications</label>
+                </div>
+               
+
+                <label for="notification-frequency">Notification Frequency</label>
+                <select id="notification-frequency" name="notification-frequency">
+                    <option value="immediately">Immediately</option>
+                    <option value="hourly">Daily</option>
+                    <option value="weekly">Weekly</option>
+                </select>
+
+                <button type="submit">Save Preferences</button>
+            </form>
+        </section>
+    </main>
+
+    <script>
+        const tabs = document.querySelectorAll('.tab-button');
+        const contents = document.querySelectorAll('.tab-content');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => {
+                    t.classList.remove('active');
+                });
+                tab.classList.add('active');
+
+                contents.forEach(content => {
+                    content.classList.remove('active');
+                });
+                const activeContent = document.getElementById(tab.dataset.tab);
+                if (activeContent) {
+                    activeContent.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
